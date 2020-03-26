@@ -12,7 +12,6 @@ window.onload = function () {
 
     let endDateObject = document.getElementById('end');
     endDateObject.addEventListener('change', function () {
-        alert("change!");
         setEndDate(toUnixTimeStamp(endDateObject.value));
     });
 
