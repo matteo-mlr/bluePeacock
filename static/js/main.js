@@ -1,11 +1,10 @@
 let mouseDown = false;
 setInititalPosition('raumtemperaturSlider');
 
-window.onload = function () {
-
+function setup() {
     let raumtemperaturSlider = document.getElementById('raumtemperaturSlider');
     let zuluftSlider = document.getElementById('lüfterZuluft');
-    
+
     raumtemperaturSlider.addEventListener('mousedown', function () {
 
         mouseDown = true;
