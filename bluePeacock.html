@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>CONTROL PANEL</h1>
+        <div class="content">
+            <div class="controlPanel">
+                <div class="slider-wrapper raumtemperatur" id="raumtemperatur">
+                    <p class="heading">Raumtemperatur</p>
+                    <input type="range" min="1800" max="2400" value="1900" class="slider" id="raumtemperaturSlider">
+                    <div class="text">
+                        <p class="value low">18°C</p>
+                        <p class="value high">24°C</p>
+                    </div>
+                    <div class="current">
+                        <span class="currentValue"></span>
+                    </div>
+                </div>
+                <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
+                    <p class="heading">Lüfterstufe - Zuluft</p>
+                    <input type="range" min="0" max="1000" value="50" class="slider" id="lüfterZuluft">
+                    <div class="text">
+                        <p class="value low">0%</p>
+                        <p class="value high">100%</p>
+                    </div>
+                    <div class="current">
+                        <span class="currentValue"></span>
+                    </div>
+                </div>
+                <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
+                    <p class="heading">Lüfterstufe - Abluft</p>
+                    <input type="range" min="0" max="1000" value="50" class="slider" id="lüfterAbluft">
+                    <div class="text">
+                        <p class="value low">0%</p>
+                        <p class="value high">100%</p>
+                    </div>
+                </div>
+                <div class="slider-wrapper kompressor" id="kompressor">
+                    <p class="heading">Lüfterstufe - Abluft</p>
+                    <input type="range" min="0" max="1000" value="50" class="slider" id="kompressor">
+                    <div class="text">
+                        <p class="value low">0%</p>
+                        <p class="value high">100%</p>
+                    </div>
+                </div>
+            </div>
+            <iframe class="grafana" src="http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=2" width="800" height="400" frameborder="0"></iframe>
+        </div>
+        <a class="button" href="#">Übernehmen</a>
+        <script src="main.js" type="text/javascript"></script>
+    </body>
+</html>
