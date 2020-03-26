@@ -12,40 +12,46 @@
             <div class="controlPanel">
                 <div class="slider-wrapper raumtemperatur" id="raumtemperatur">
                     <p class="heading">Raumtemperatur</p>
-                    <input type="range" min="1800" max="2400" value="1900" class="slider" id="raumtemperaturSlider">
+                    <input type="range" min="1800" max="2400" value="2100" class="slider" id="raumtemperaturSlider">
                     <div class="text">
-                        <p class="value low">18°C</p>
-                        <p class="value high">24°C</p>
+                        <p class="value low raumtempLow">18°C</p>
+                        <p class="value high raumtempHigh">24°C</p>
                     </div>
-                    <div class="current">
-                        <span class="currentValue"></span>
+                    <div class="current current1">
+                        <span class="currentValue currentValue1"></span>
                     </div>
                 </div>
                 <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
                     <p class="heading">Lüfterstufe - Zuluft</p>
-                    <input type="range" min="0" max="1000" value="50" class="slider" id="lüfterZuluft">
+                    <input type="range" min="0" max="1000" value="500" class="slider" id="lüfterZuluftSlider">
                     <div class="text">
-                        <p class="value low">0%</p>
-                        <p class="value high">100%</p>
+                        <p class="value low zuluftLow">0%</p>
+                        <p class="value high zuluftHigh">100%</p>
                     </div>
-                    <div class="current">
-                        <span class="currentValue"></span>
+                    <div class="current current2">
+                        <span class="currentValue currentValue2"></span>
                     </div>
                 </div>
                 <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
                     <p class="heading">Lüfterstufe - Abluft</p>
-                    <input type="range" min="0" max="1000" value="50" class="slider" id="lüfterAbluft">
+                    <input type="range" min="0" max="1000" value="500" class="slider" id="lüfterAbluftSlider">
                     <div class="text">
                         <p class="value low">0%</p>
                         <p class="value high">100%</p>
                     </div>
+                    <div class="current current3">
+                        <span class="currentValue currentValue3"></span>
+                    </div>
                 </div>
                 <div class="slider-wrapper kompressor" id="kompressor">
                     <p class="heading">Lüfterstufe - Abluft</p>
-                    <input type="range" min="0" max="1000" value="50" class="slider" id="kompressor">
+                    <input type="range" min="0" max="1000" value="500" class="slider" id="kompressorSlider">
                     <div class="text">
                         <p class="value low">0%</p>
                         <p class="value high">100%</p>
+                    </div>
+                    <div class="current current4">
+                        <span class="currentValue currentValue4"></span>
                     </div>
                 </div>
             </div>
