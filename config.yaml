@@ -1,0 +1,4 @@
+blue-peacock:
+  grafana:
+    dashboards:
+      - http://localhost:3000/d-solo/f4Uuy_YWz/nilan-combi-s-302-extended-temperatures?orgId=1&panelId=2&from=1585157729577&to=1585244129577
