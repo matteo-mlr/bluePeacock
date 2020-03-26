@@ -170,6 +170,14 @@ a {
     justify-content: space-around;
 }
 
+.date-control-wrapper {
+    margin-top: 50px;
+}
+
+.date-element{
+    margin-right: 50px;
+}
+
 @media screen and (max-width: 1350px) {
     .content {
         flex-direction: column;
@@ -177,4 +185,3 @@ a {
         align-items: center;
     }
 }
-
