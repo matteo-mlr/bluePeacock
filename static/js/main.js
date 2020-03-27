@@ -3,6 +3,7 @@ const MONTH_OFFEST = 1
 let mouseDown = false;
 setInititalPositionRaumtemp();
 setInititalPositionZuluft();
+setInititalPositionAbluft();
 
 window.onload = function () {
     let startDateObject = document.getElementById('start');
@@ -22,7 +23,7 @@ window.onload = function () {
     
     var eventListenerRaumtemperatur = (event) => update(event, 'raumtemperaturSlider', '.current1', '.raumtempLow', '.raumtempHigh');
     var eventListenerZuluft = (event) => update(event, 'lüfterZuluftSlider', '.current2', '.zuluftLow', '.zuluftHigh');
-    var eventListenerAbluft = (event) => update(event, 'raumtemperaturSlider', '.current3', '.raumtempLow', '.raumtempHigh');
+    var eventListenerAbluft = (event) => update(event, 'lüfterAbluftSlider', '.current3', '.abluftLow', '.abluftHigh');
     var eventListenerKompressor = (event) => update(event, 'raumtemperaturSlider', '.current4', '.raumtempLow', '.raumtempHigh');
     
     raumtemperaturSlider.addEventListener('mousedown', function () {
@@ -158,6 +159,34 @@ function update (event, slider, span, low, high) {
 
         }
 
+        if (slider == 'lüfterAbluftSlider') {
+
+            let zuluft = document.getElementById(slider).value
+            if (zuluft < 100) {
+                document.querySelector(low).classList.add('disable')
+            }
+            if (zuluft > 100) {
+                document.querySelector(low).classList.remove('disable')
+            }
+            if (zuluft < 900) {
+                document.querySelector(high).classList.remove('disable')
+            }
+            if (zuluft > 900) {
+                document.querySelector(high).classList.add('disable')
+            }
+            let verhältnis = zuluft / 1000
+            let object = document.querySelector(span);
+            let marginLeft = document.getElementById(slider).offsetLeft
+
+            let left = 465 * verhältnis;
+            object.style.left = left + marginLeft;
+
+            let zuluftValue = Math.round(zuluft / 10)
+
+            document.querySelector('.currentValue3').innerHTML = zuluftValue + "%"; 
+
+        }
+
     }
 
 };
@@ -170,6 +199,7 @@ function setInititalPositionRaumtemp () {
     let marginLeft = document.getElementById('raumtemperaturSlider').offsetLeft
 
     let left = 465 * verhältnis;
+
     object.style.left = left + marginLeft;
 
     let raumtemperatur = Math.round(raumtemp / 100)
@@ -182,15 +212,33 @@ function setInititalPositionZuluft () {
 
     let zuluft = document.getElementById('lüfterZuluftSlider').value
     let verhältnis = zuluft / 1000
-    let object = document.querySelector('.currentValue2');
+    let object = document.querySelector('.current2');
     let marginLeft = document.getElementById('lüfterZuluftSlider').offsetLeft
 
     let left = 465 * verhältnis;
+
     object.style.left = left + marginLeft;
 
     let zuluftValue = Math.round(zuluft / 10)
 
     document.querySelector('.currentValue2').innerHTML = zuluftValue + "%"; 
+
+};
+
+function setInititalPositionAbluft () {
+
+    let abluft = document.getElementById('lüfterAbluftSlider').value
+    let verhältnis = abluft / 1000
+    let object = document.querySelector('.current3');
+    let marginLeft = document.getElementById('lüfterAbluftSlider').offsetLeft
+
+    let left = 465 * verhältnis;
+
+    object.style.left = left + marginLeft;
+
+    let abluftValue = Math.round(abluft / 10)
+
+    document.querySelector('.currentValue3').innerHTML = abluftValue + "%"; 
 
 };
 
