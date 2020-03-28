@@ -17,8 +17,7 @@ h1 {
     font-size: 30pt;
     color: #fff;
     letter-spacing: 1px;
-    text-align: center;
-    transform: translateY(50px);
+    margin: 0 0 75px 0;
 }
 
 .slider-wrapper {
@@ -139,43 +138,125 @@ h1 {
     margin: 100px 0 0 0;
 }
 
-.button {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 12px 24px 12px 24px;
+.btn-wrapper {
     position: absolute;
     bottom: 100px;
     right: 100px;
+}
+
+.button {
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 17px 30px 17px 30px;
     transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1);
+    margin: 0 0 0 25px;
+}
+
+.button:hover {
+    background-color: rgb(92,152,222,1);
+    color: #fff;
 }
 
 a {
     color: #212025;
     text-decoration: none;
     font-weight: 600;
-    font-size: 10pt;
+    font-size: 12pt;
 }
 
-.button:hover {
-    transform: scale(0.97);
-    color: #b7d9b1;
+label {
+    color: #fff;
 }
 
 .content {
     position: absolute;
     bottom: 0;
-    height: 90%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
 .date-control-wrapper {
-    margin-top: 50px;
+    margin: 0 0 30px 0;
 }
 
 .date-element{
-    margin-right: 50px;
+    padding: 20px 15px 20px 15px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12pt;
+    margin: 0 20px 0 0;
+}
+
+.date-element:last-child {
+    color: #fff;
+    background-color: rgb(85, 85, 85);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkboxSlider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 34px;
+}
+
+.checkboxSlider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 50%;
+}
+
+input:checked + .checkboxSlider {
+    background-color: rgb(92,152,222,1);
+}
+
+input:focus + .checkboxSlider {
+    box-shadow: 0 0 1px rgb(92,152,222,1);
+}
+
+input:checked + .checkboxSlider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.vorhersageLabel {
+    margin: 0 0 0 15px;
+}
+
+.vorhersage-wrapper {
+    margin: 0 0 40px 0;
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (max-width: 1350px) {
