@@ -4,6 +4,7 @@ let mouseDown = false;
 setInititalPositionRaumtemp();
 setInititalPositionZuluft();
 setInititalPositionAbluft();
+setInititalPositionKompressor();
 
 window.onload = function () {
     let startDateObject = document.getElementById('start');
@@ -24,7 +25,7 @@ window.onload = function () {
     var eventListenerRaumtemperatur = (event) => update(event, 'raumtemperaturSlider', '.current1', '.raumtempLow', '.raumtempHigh');
     var eventListenerZuluft = (event) => update(event, 'lüfterZuluftSlider', '.current2', '.zuluftLow', '.zuluftHigh');
     var eventListenerAbluft = (event) => update(event, 'lüfterAbluftSlider', '.current3', '.abluftLow', '.abluftHigh');
-    var eventListenerKompressor = (event) => update(event, 'raumtemperaturSlider', '.current4', '.raumtempLow', '.raumtempHigh');
+    var eventListenerKompressor = (event) => update(event, 'kompressorSlider', '.current4', '.kompressorLow', '.kompressorHigh');
     
     raumtemperaturSlider.addEventListener('mousedown', function () {
 
@@ -187,6 +188,42 @@ function update (event, slider, span, low, high) {
 
         }
 
+        if (slider == 'kompressorSlider') {
+
+            let kompressor = document.getElementById(slider).value
+            if (kompressor == 0) {
+                document.querySelector(low).classList.add('disable')
+            }
+            if (kompressor > 0) {
+                document.querySelector(low).classList.remove('disable')
+            }
+            if (kompressor < 2) {
+                document.querySelector(high).classList.remove('disable')
+            }
+            if (kompressor == 2) {
+                document.querySelector(high).classList.add('disable')
+            }
+            let verhältnis = kompressor / 2
+            let object = document.querySelector(span);
+            let marginLeft = document.getElementById(slider).offsetLeft
+
+            let left = 465 * verhältnis;
+
+            let kompressorValue = Math.round(kompressor / 10)
+
+            if (kompressor == 0) {
+                document.querySelector('.currentValue4').innerHTML = "Kühlen";
+                object.style.left = left + marginLeft;
+            } else if (kompressor == 1) {
+                document.querySelector('.currentValue4').innerHTML = "Aus";
+                object.style.left = left + marginLeft;
+            } else if (kompressor == 2) {
+                document.querySelector('.currentValue4').innerHTML = "Heizen";
+                object.style.left = left + marginLeft - 20;
+            }
+    
+        }
+
     }
 
 };
@@ -240,6 +277,22 @@ function setInititalPositionAbluft () {
 
     document.querySelector('.currentValue3').innerHTML = abluftValue + "%"; 
 
+};
+
+function setInititalPositionKompressor () {
+
+    let abluft = document.getElementById('kompressorSlider').value
+    let verhältnis = abluft / 2
+    let object = document.querySelector('.current4');
+    let marginLeft = document.getElementById('kompressorSlider').offsetLeft
+
+    let left = 465 * verhältnis;
+
+    object.style.left = left + marginLeft;
+
+    let abluftValue = Math.round(abluft / 10)
+
+    document.querySelector('.currentValue4').innerHTML = "Aus";
 };
 
 function setStartDate(unixTimestamp){
