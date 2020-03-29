@@ -181,7 +181,7 @@ label {
     margin: 0 0 30px 0;
 }
 
-.date-element{
+.date-element {
     padding: 20px 15px 20px 15px;
     border: none;
     border-radius: 50px;
@@ -190,11 +190,22 @@ label {
     font-size: 12pt;
     margin: 0 20px 0 0;
     outline: none;
+    -webkit-transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.date-element:focus {
+    transform: scale(1.1);
 }
 
 .date-element:last-child {
     color: #fff;
     background-color: rgb(85, 85, 85);
+}
+
+.date-element:after {
+    content: '';
+    background-color: #fff;
 }
 
 .switch {
