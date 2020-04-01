@@ -1,104 +1,111 @@
 const MONTH_OFFEST = 1
 
 let mouseDown = false;
+
+/* Variablen für Buttons */
+
+let btnAktualisieren = document.getElementById('aktualisieren');
+let btnAnwenden = document.getElementById('anwenden');
+let einstellungenAktualisiert = false;
+let werteGeaendert = false;
+
+/******/
+
 setInititalPositionRaumtemp();
 setInititalPositionZuluft();
 setInititalPositionAbluft();
 setInititalPositionKompressor();
 
-window.onload = function () {
-    let startDateObject = document.getElementById('start');
-    startDateObject.addEventListener('change', function () {
-        setStartDate(toUnixTimeStamp(startDateObject.value));
-    });
+let startDateObject = document.getElementById('start');
+startDateObject.addEventListener('change', function () {
+    setStartDate(toUnixTimeStamp(startDateObject.value));
+});
 
-    let endDateObject = document.getElementById('end');
-    endDateObject.addEventListener('change', function () {
-        setEndDate(toUnixTimeStamp(endDateObject.value));
-    });
+let endDateObject = document.getElementById('end');
+endDateObject.addEventListener('change', function () {
+    setEndDate(toUnixTimeStamp(endDateObject.value));
+});
 
-    let raumtemperaturSlider = document.getElementById('raumtemperaturSlider');
-    let zuluftSlider = document.getElementById('lüfterZuluftSlider');
-    let abluftSlider = document.getElementById('lüfterAbluftSlider');
-    let kompressorSlider = document.getElementById('kompressorSlider');
-    
-    var eventListenerRaumtemperatur = (event) => update(event, 'raumtemperaturSlider', '.current1', '.raumtempLow', '.raumtempHigh');
-    var eventListenerZuluft = (event) => update(event, 'lüfterZuluftSlider', '.current2', '.zuluftLow', '.zuluftHigh');
-    var eventListenerAbluft = (event) => update(event, 'lüfterAbluftSlider', '.current3', '.abluftLow', '.abluftHigh');
-    var eventListenerKompressor = (event) => update(event, 'kompressorSlider', '.current4', '.kompressorLow', '.kompressorHigh');
-    
-    raumtemperaturSlider.addEventListener('mousedown', function () {
+let raumtemperaturSlider = document.getElementById('raumtemperaturSlider');
+let zuluftSlider = document.getElementById('lüfterZuluftSlider');
+let abluftSlider = document.getElementById('lüfterAbluftSlider');
+let kompressorSlider = document.getElementById('kompressorSlider');
 
-        mouseDown = true;
-        document.querySelector('.currentValue1').classList.add('bigger');
+var eventListenerRaumtemperatur = (event) => update(event, 'raumtemperaturSlider', '.current1', '.raumtempLow', '.raumtempHigh');
+var eventListenerZuluft = (event) => update(event, 'lüfterZuluftSlider', '.current2', '.zuluftLow', '.zuluftHigh');
+var eventListenerAbluft = (event) => update(event, 'lüfterAbluftSlider', '.current3', '.abluftLow', '.abluftHigh');
+var eventListenerKompressor = (event) => update(event, 'kompressorSlider', '.current4', '.kompressorLow', '.kompressorHigh');
 
+raumtemperaturSlider.addEventListener('mousedown', function () {
 
-    });
-
-    raumtemperaturSlider.addEventListener('mouseup', function () {
-
-        mouseDown = false;
-        document.querySelector('.currentValue1').classList.remove('bigger');
+    mouseDown = true;
+    document.querySelector('.currentValue1').classList.add('bigger');
 
 
-    });
+});
 
-    zuluftSlider.addEventListener('mousedown', function () {
+raumtemperaturSlider.addEventListener('mouseup', function () {
 
-        mouseDown = true;
-        document.querySelector('.currentValue2').classList.add('bigger');
-
-
-    });
-
-    zuluftSlider.addEventListener('mouseup', function () {
-
-        mouseDown = false;
-        document.querySelector('.currentValue2').classList.remove('bigger');
+    mouseDown = false;
+    document.querySelector('.currentValue1').classList.remove('bigger');
 
 
-    });
+});
 
-    abluftSlider.addEventListener('mousedown', function () {
+zuluftSlider.addEventListener('mousedown', function () {
 
-        mouseDown = true;
-        document.querySelector('.currentValue3').classList.add('bigger');
-
-
-    });
-
-    abluftSlider.addEventListener('mouseup', function () {
-
-        mouseDown = false;
-        document.querySelector('.currentValue3').classList.remove('bigger');
+    mouseDown = true;
+    document.querySelector('.currentValue2').classList.add('bigger');
 
 
-    });
+});
+
+zuluftSlider.addEventListener('mouseup', function () {
+
+    mouseDown = false;
+    document.querySelector('.currentValue2').classList.remove('bigger');
 
 
-    kompressorSlider.addEventListener('mousedown', function () {
+});
 
-        mouseDown = true;
-        document.querySelector('.currentValue4').classList.add('bigger');
+abluftSlider.addEventListener('mousedown', function () {
 
-
-    });
-
-    kompressorSlider.addEventListener('mouseup', function () {
-
-        mouseDown = false;
-        document.querySelector('.currentValue4').classList.remove('bigger');
+    mouseDown = true;
+    document.querySelector('.currentValue3').classList.add('bigger');
 
 
-    });
+});
+
+abluftSlider.addEventListener('mouseup', function () {
+
+    mouseDown = false;
+    document.querySelector('.currentValue3').classList.remove('bigger');
 
 
-    raumtemperaturSlider.addEventListener('mousemove', eventListenerRaumtemperatur);
-    lüfterZuluftSlider.addEventListener('mousemove', eventListenerZuluft);
-    abluftSlider.addEventListener('mousemove', eventListenerAbluft);
-    kompressorSlider.addEventListener('mousemove', eventListenerKompressor);
+});
 
-};
+
+kompressorSlider.addEventListener('mousedown', function () {
+
+    mouseDown = true;
+    document.querySelector('.currentValue4').classList.add('bigger');
+
+
+});
+
+kompressorSlider.addEventListener('mouseup', function () {
+
+    mouseDown = false;
+    document.querySelector('.currentValue4').classList.remove('bigger');
+
+
+});
+
+
+raumtemperaturSlider.addEventListener('mousemove', eventListenerRaumtemperatur);
+lüfterZuluftSlider.addEventListener('mousemove', eventListenerZuluft);
+abluftSlider.addEventListener('mousemove', eventListenerAbluft);
+kompressorSlider.addEventListener('mousemove', eventListenerKompressor);
 
 function update (event, slider, span, low, high) {
 
@@ -130,6 +137,9 @@ function update (event, slider, span, low, high) {
 
             document.querySelector('.currentValue1').innerHTML = raumtemperaturValue + "°C";  
 
+            werteGeaendert = true;
+            btnAktualisieren.classList.remove('inactive');
+
         }      
 
         if (slider == 'lüfterZuluftSlider') {
@@ -158,6 +168,9 @@ function update (event, slider, span, low, high) {
 
             document.querySelector('.currentValue2').innerHTML = zuluftValue + "%"; 
 
+            werteGeaendert = true;
+            btnAktualisieren.classList.remove('inactive');
+
         }
 
         if (slider == 'lüfterAbluftSlider') {
@@ -185,6 +198,9 @@ function update (event, slider, span, low, high) {
             let zuluftValue = Math.round(zuluft / 10)
 
             document.querySelector('.currentValue3').innerHTML = zuluftValue + "%"; 
+
+            werteGeaendert = true;
+            btnAktualisieren.classList.remove('inactive');
 
         }
 
@@ -221,6 +237,9 @@ function update (event, slider, span, low, high) {
                 document.querySelector('.currentValue4').innerHTML = "Heizen";
                 object.style.left = left + marginLeft - 20;
             }
+
+            werteGeaendert = true;
+            btnAktualisieren.classList.remove('inactive');
     
         }
 
@@ -293,15 +312,18 @@ function setInititalPositionKompressor () {
     let abluftValue = Math.round(abluft / 10)
 
     document.querySelector('.currentValue4').innerHTML = "Aus";
+    
 };
 
 function setStartDate(unixTimestamp){
+
   let link = document.getElementById("grafana-iframe").getAttribute("src");
   let linkSplit = link.split("from=");
   let linkBeginning = linkSplit[0] + "from="  + unixTimestamp;
   let linkEnd = linkSplit[1].split("&to=");
   let newLink =  linkBeginning + "&to=" + linkEnd[1];
-  document.getElementById("grafana-iframe").setAttribute("src", newLink)
+  document.getElementById("grafana-iframe").setAttribute("src", newLink);
+
 }
 
 function setEndDate(unixTimestamp){
@@ -312,6 +334,7 @@ function setEndDate(unixTimestamp){
 }
 
 function toUnixTimeStamp(dateString) {
+
     let timeLiteralArray =  resolveLiterals(dateString)
     var date = new Date(Date.UTC(timeLiteralArray[0]
         ,timeLiteralArray[1]
@@ -322,9 +345,11 @@ function toUnixTimeStamp(dateString) {
         )
     );
     return date.getTime();
+
 }
 
 function resolveLiterals(dateString) {
+
     let splitDateString = dateString.split("-");
     let year = splitDateString[0];
     let month = splitDateString[1] - MONTH_OFFEST;
@@ -333,5 +358,35 @@ function resolveLiterals(dateString) {
     let splitTimeString = splitDayString[1].split(":");
     let hour = splitTimeString[0];
     let minutes = splitTimeString[1];
-    return [year, month, day, hour, minutes, 0]
+    return [year, month, day, hour, minutes, 0];
+
 }
+
+/* Buttons */
+
+btnAktualisieren.addEventListener('mouseover', function() {
+    if (werteGeaendert == true) {
+        btnAktualisieren.classList.add('active');
+    }
+});
+
+btnAktualisieren.addEventListener('mouseout', function () {
+    btnAktualisieren.classList.remove('active');
+});
+
+btnAktualisieren.addEventListener('click', function () {
+    if (werteGeaendert == true) {
+        einstellungenAktualisiert = true;
+        btnAnwenden.classList.remove('inactive');
+    }
+});
+
+btnAnwenden.addEventListener('mouseover', function() {
+    if (einstellungenAktualisiert == true) {
+        btnAnwenden.classList.add('active');
+    }
+});
+
+btnAnwenden.addEventListener('mouseout', function () {
+    btnAnwenden.classList.remove('active');
+});

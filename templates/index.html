@@ -3,7 +3,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../static/css/style.css">
         <script type="text/javascript"
-                src="{{ url_for('static', filename='js/main.js') }}"></script>
+            src="{{ url_for('static', filename='js/main.js') }}">
+        </script>
     </head>
     <!-- TODO: Make JavaScript work without this onload event here -->
     <body onload="setup()">
@@ -74,8 +75,8 @@
             </div>
         </div>
         <div class="btn-wrapper">
-            <a class="button" href="#">Aktualisieren</a>
-            <a class="button" href="#">Anwenden</a>
+            <a class="button inactive" id="aktualisieren" href="#">Aktualisieren</a>
+            <a class="button inactive" id="anwenden" href="#">Anwenden</a>
         </div>
         <script src="../static/js/main.js" type="text/javascript"></script>
     </body>
