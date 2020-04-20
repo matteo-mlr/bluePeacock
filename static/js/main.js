@@ -2,6 +2,35 @@ const MONTH_OFFEST = 1
 
 let mouseDown = false;
 
+/* Browsererkennung */
+
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+console.log(isSafari)
+var safari = document.querySelectorAll('.safari');
+var notSafari = document.querySelectorAll('.not-safari');
+
+if (isSafari) {
+    
+    safari.forEach(function(entry) {
+        entry.classList.remove('disable');
+    });
+
+    notSafari.forEach(function(entry) {
+        entry.classList.add('disable');
+    });
+
+} else {
+
+    safari.forEach(function(entry) {
+        entry.classList.add('disable');
+    });
+
+    notSafari.forEach(function(entry) {
+        entry.classList.remove('disable');
+    });
+    
+}
+
 /* Variablen für Buttons */
 
 let btnAktualisieren = document.getElementById('aktualisieren');
@@ -15,16 +44,6 @@ setInititalPositionRaumtemp();
 setInititalPositionZuluft();
 setInititalPositionAbluft();
 setInititalPositionKompressor();
-
-let startDateObject = document.getElementById('start');
-startDateObject.addEventListener('change', function () {
-    setStartDate(toUnixTimeStamp(startDateObject.value));
-});
-
-let endDateObject = document.getElementById('end');
-endDateObject.addEventListener('change', function () {
-    setEndDate(toUnixTimeStamp(endDateObject.value));
-});
 
 let raumtemperaturSlider = document.getElementById('raumtemperaturSlider');
 let zuluftSlider = document.getElementById('lüfterZuluftSlider');
@@ -145,28 +164,32 @@ function update (event, slider, span, low, high) {
         if (slider == 'lüfterZuluftSlider') {
 
             let zuluft = document.getElementById(slider).value
-            if (zuluft < 100) {
+            if (zuluft < 1) {
                 document.querySelector(low).classList.add('disable')
             }
-            if (zuluft > 100) {
+            if (zuluft > 1) {
                 document.querySelector(low).classList.remove('disable')
             }
-            if (zuluft < 900) {
+            if (zuluft < 3) {
                 document.querySelector(high).classList.remove('disable')
             }
-            if (zuluft > 900) {
+            if (zuluft > 3) {
                 document.querySelector(high).classList.add('disable')
             }
-            let verhältnis = zuluft / 1000
+            let verhältnis = zuluft / 4;
             let object = document.querySelector(span);
-            let marginLeft = document.getElementById(slider).offsetLeft
-
-            let left = 465 * verhältnis;
+            let marginLeft = document.getElementById(slider).offsetLeft;
+            let left = 0;
+            if (zuluft == 0) {
+                left = 465 * verhältnis;
+            } else {
+                left = 465 * verhältnis + 13;
+            }
             object.style.left = left + marginLeft;
 
-            let zuluftValue = Math.round(zuluft / 10)
+            let zuluftValue = Math.round(zuluft)
 
-            document.querySelector('.currentValue2').innerHTML = zuluftValue + "%"; 
+            document.querySelector('.currentValue2').innerHTML = zuluftValue; 
 
             werteGeaendert = true;
             btnAktualisieren.classList.remove('inactive');
@@ -176,28 +199,34 @@ function update (event, slider, span, low, high) {
         if (slider == 'lüfterAbluftSlider') {
 
             let zuluft = document.getElementById(slider).value
-            if (zuluft < 100) {
+            if (zuluft < 1) {
                 document.querySelector(low).classList.add('disable')
             }
-            if (zuluft > 100) {
+            if (zuluft > 1) {
                 document.querySelector(low).classList.remove('disable')
             }
-            if (zuluft < 900) {
+            if (zuluft < 3) {
                 document.querySelector(high).classList.remove('disable')
             }
-            if (zuluft > 900) {
+            if (zuluft > 3) {
                 document.querySelector(high).classList.add('disable')
             }
-            let verhältnis = zuluft / 1000
+            let verhältnis = zuluft / 4
             let object = document.querySelector(span);
             let marginLeft = document.getElementById(slider).offsetLeft
 
-            let left = 465 * verhältnis;
+            let left = 0;
+            if (zuluft == 0) {
+                left = 465 * verhältnis;
+            } else {
+                left = 465 * verhältnis + 13;
+            }
+
             object.style.left = left + marginLeft;
 
-            let zuluftValue = Math.round(zuluft / 10)
+            let zuluftValue = Math.round(zuluft)
 
-            document.querySelector('.currentValue3').innerHTML = zuluftValue + "%"; 
+            document.querySelector('.currentValue3').innerHTML = zuluftValue;
 
             werteGeaendert = true;
             btnAktualisieren.classList.remove('inactive');
@@ -267,34 +296,44 @@ function setInititalPositionRaumtemp () {
 function setInititalPositionZuluft () {
 
     let zuluft = document.getElementById('lüfterZuluftSlider').value
-    let verhältnis = zuluft / 1000
+    let verhältnis = zuluft / 4;
     let object = document.querySelector('.current2');
     let marginLeft = document.getElementById('lüfterZuluftSlider').offsetLeft
 
-    let left = 465 * verhältnis;
+    let left = 0;
+    if (zuluft == 0) {
+        left = 465 * verhältnis;
+    } else {
+        left = 465 * verhältnis + 13;
+    }
 
     object.style.left = left + marginLeft;
 
-    let zuluftValue = Math.round(zuluft / 10)
+    let zuluftValue = Math.round(zuluft);
 
-    document.querySelector('.currentValue2').innerHTML = zuluftValue + "%"; 
+    document.querySelector('.currentValue2').innerHTML = zuluftValue; 
 
 };
 
 function setInititalPositionAbluft () {
 
-    let abluft = document.getElementById('lüfterAbluftSlider').value
-    let verhältnis = abluft / 1000
+    let zuluft = document.getElementById('lüfterAbluftSlider').value
+    let verhältnis = zuluft / 4;
     let object = document.querySelector('.current3');
     let marginLeft = document.getElementById('lüfterAbluftSlider').offsetLeft
 
-    let left = 465 * verhältnis;
+    let left = 0;
+    if (zuluft == 0) {
+        left = 465 * verhältnis;
+    } else {
+        left = 465 * verhältnis + 13;
+    }
 
     object.style.left = left + marginLeft;
 
-    let abluftValue = Math.round(abluft / 10)
+    let zuluftValue = Math.round(zuluft);
 
-    document.querySelector('.currentValue3').innerHTML = abluftValue + "%"; 
+    document.querySelector('.currentValue3').innerHTML = zuluftValue; 
 
 };
 
@@ -314,53 +353,6 @@ function setInititalPositionKompressor () {
     document.querySelector('.currentValue4').innerHTML = "Aus";
     
 };
-
-function setStartDate(unixTimestamp){
-
-  let link = document.getElementById("grafana-iframe").getAttribute("src");
-  let linkSplit = link.split("from=");
-  let linkBeginning = linkSplit[0] + "from="  + unixTimestamp;
-  let linkEnd = linkSplit[1].split("&to=");
-  let newLink =  linkBeginning + "&to=" + linkEnd[1];
-  document.getElementById("grafana-iframe").setAttribute("src", newLink);
-
-}
-
-function setEndDate(unixTimestamp){
-    let link = document.getElementById("grafana-iframe").getAttribute("src");
-    let linkSplit = link.split("to=");
-    let newLink =  linkSplit[0] + "to="  + unixTimestamp;
-    document.getElementById("grafana-iframe").setAttribute("src", newLink)
-}
-
-function toUnixTimeStamp(dateString) {
-
-    let timeLiteralArray =  resolveLiterals(dateString)
-    var date = new Date(Date.UTC(timeLiteralArray[0]
-        ,timeLiteralArray[1]
-        ,timeLiteralArray[2]
-        ,timeLiteralArray[3]
-        ,timeLiteralArray[4]
-        ,timeLiteralArray[5]
-        )
-    );
-    return date.getTime();
-
-}
-
-function resolveLiterals(dateString) {
-
-    let splitDateString = dateString.split("-");
-    let year = splitDateString[0];
-    let month = splitDateString[1] - MONTH_OFFEST;
-    let splitDayString = splitDateString[2].split("T");
-    let day = splitDayString[0];
-    let splitTimeString = splitDayString[1].split(":");
-    let hour = splitTimeString[0];
-    let minutes = splitTimeString[1];
-    return [year, month, day, hour, minutes, 0];
-
-}
 
 /* Buttons */
 
@@ -390,3 +382,25 @@ btnAnwenden.addEventListener('mouseover', function() {
 btnAnwenden.addEventListener('mouseout', function () {
     btnAnwenden.classList.remove('active');
 });
+
+function dropdown (index) {
+
+    let quelle1 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=2";
+    let quelle2 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=3";
+    
+    switch (index) {
+
+        case 1: 
+        document.querySelector('.grafana-frame').src = quelle1; 
+        document.querySelector('.dropbtn').innerHTML = "Dashboard 1";
+        break;
+
+        case 2: 
+        document.querySelector('.grafana-frame').src = quelle2; 
+        document.querySelector('.dropbtn').innerHTML = "Dashboard 2";
+        break;
+
+    }
+
+}
+
