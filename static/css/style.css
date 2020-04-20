@@ -134,6 +134,11 @@ h1 {
     margin: 100px 0 0 0;
 }
 
+.grafana-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .controlPanel {
     margin: 100px 0 0 0;
 }
@@ -197,6 +202,11 @@ label {
     outline: none;
     -webkit-transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
     transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: inline-block;
+}
+
+.date-element.disable {
+    display: none;
 }
 
 .date-element:focus {
@@ -275,6 +285,60 @@ input:checked + .checkboxSlider:before {
     display: flex;
     align-items: center;
 }
+
+/* DROPDOWN *****/
+
+.dropbtn {
+    background-color: #fff;
+    color: #000;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-size: 12pt;
+    width: 160px;
+    margin: 0;
+    z-index: 10;
+    position: relative;
+  }
+  
+  .dropdown {
+    position: absolute;    
+    top: 100px;
+    right: 100px;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Montserrat;
+    font-size: 12pt;
+    font-weight: 400;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: rgb(85, 85, 85);
+    color: #fff;
+  }
 
 @media screen and (max-width: 1350px) {
     .content {
