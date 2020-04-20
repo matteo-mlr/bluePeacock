@@ -1,6 +1,5 @@
 <html>
     <head>
-		<meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../static/css/style.css">
         <script type="text/javascript"
@@ -13,11 +12,10 @@
             <div class="controlPanel">
                 <h1>CONTROL PANEL</h1>
                 <div class="date-control-wrapper">
-                    <!--<label class="heading" for="start">Start Datum:</label>-->
-                    <input class="date-element" type="datetime-local" id="start" name="ts-start" value="2020-01-01" size="10">
-
-                    <!--<label class="heading" for="end">End Datum:</label>-->
-                    <input class="date-element" type="datetime-local" id="end" name="ts-end" value="2020-04-01" size="10">
+                    <input class="date-element safari" type="datetime-local" id="start" name="ts-start" value="2020-01-01" size="10">
+                    <input class="date-element not-safari" type="date" id="birthday" name="birthday">
+                    <input class="date-element safari" type="datetime-local" id="end" name="ts-end" value="2020-04-01" size="10">
+                    <input class="date-element not-safari" type="date" id="birthday" name="birthday">
                 </div>
                 <div class="vorhersage-wrapper">
                     <label class="switch" name="vorhersage">
@@ -39,10 +37,10 @@
                 </div>
                 <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
                     <p class="heading">Lüfterstufe - Zuluft</p>
-                    <input type="range" min="0" max="1000" value="500" class="slider" id="lüfterZuluftSlider">
+                    <input type="range" min="0" max="4" value="2" class="slider" id="lüfterZuluftSlider">
                     <div class="text">
-                        <p class="value low zuluftLow">0%</p>
-                        <p class="value high zuluftHigh">100%</p>
+                        <p class="value low zuluftLow">0</p>
+                        <p class="value high zuluftHigh">4</p>
                     </div>
                     <div class="current current2">
                         <span class="currentValue currentValue2"></span>
@@ -50,10 +48,10 @@
                 </div>
                 <div class="slider-wrapper lüfterstufe" id="lüfterstufe">
                     <p class="heading">Lüfterstufe - Abluft</p>
-                    <input type="range" min="0" max="1000" value="500" class="slider" id="lüfterAbluftSlider">
+                    <input type="range" min="0" max="4" value="2" class="slider" id="lüfterAbluftSlider">
                     <div class="text">
-                        <p class="value low abluftLow">0%</p>
-                        <p class="value high abluftHigh">100%</p>
+                        <p class="value low abluftLow">0</p>
+                        <p class="value high abluftHigh">4</p>
                     </div>
                     <div class="current current3">
                         <span class="currentValue currentValue3"></span>
@@ -72,9 +70,16 @@
                 </div>
             </div>
             <div class="grafana-wrapper">
-              <iframe id = "grafana-iframe" class="grafana" src="{{iframe}}" width="800" height="400" frameborder="0"></iframe>
+                <iframe class="grafana-frame" src="" width="700" height="500" frameborder="0"></iframe>
             </div>
         </div>
+        <div class="dropdown">
+            <button class="dropbtn">Dashboards</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="dropdown(1)">Dashbord 1</a>
+                <a href="#" onclick="dropdown(2)">Dashbord 2</a>
+            </div>
+          </div>
         <div class="btn-wrapper">
             <a class="button inactive" id="aktualisieren" href="#">Aktualisieren</a>
             <a class="button inactive" id="anwenden" href="#">Anwenden</a>
