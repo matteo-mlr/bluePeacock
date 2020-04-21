@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="slider-wrapper kompressor" id="kompressor">
-                    <p class="heading">Lüfterstufe - Abluft</p>
+                    <p class="heading">Betriebsmodus</p>
                     <input type="range" min="0" max="2" value="1" class="slider" id="kompressorSlider">
                     <div class="text">
                         <p class="value low kompressorLow">Kühlen</p>
@@ -70,20 +70,21 @@
                 </div>
             </div>
             <div class="grafana-wrapper">
-                <iframe class="grafana-frame" src="" width="700" height="500" frameborder="0"></iframe>
+                <iframe class="grafana-frame" src="http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=2" width="700" height="500" frameborder="0"></iframe>
             </div>
         </div>
         <div class="dropdown">
             <button class="dropbtn">Dashboards</button>
             <div class="dropdown-content">
-                <a href="#" onclick="dropdown(1)">Dashbord 1</a>
-                <a href="#" onclick="dropdown(2)">Dashbord 2</a>
+                <a href="#" onclick="dropdown(1)">Dashboard 1</a>
+                <a href="#" onclick="dropdown(2)">Dashboard 2</a>
             </div>
           </div>
         <div class="btn-wrapper">
             <a class="button inactive" id="aktualisieren" href="#">Aktualisieren</a>
             <a class="button inactive" id="anwenden" href="#">Anwenden</a>
         </div>
+        <script type="text/javascript" src="../config.json"></script>
         <script src="../static/js/main.js" type="text/javascript"></script>
     </body>
 </html>

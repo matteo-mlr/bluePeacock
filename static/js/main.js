@@ -1,5 +1,3 @@
-const MONTH_OFFEST = 1
-
 let mouseDown = false;
 
 /* Browsererkennung */
@@ -30,6 +28,8 @@ if (isSafari) {
     });
     
 }
+
+getDropdown();
 
 /* Variablen für Buttons */
 
@@ -383,24 +383,35 @@ btnAnwenden.addEventListener('mouseout', function () {
     btnAnwenden.classList.remove('active');
 });
 
-function dropdown (index) {
+function dropdown (dashboard) {
 
-    let quelle1 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=2";
-    let quelle2 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=3";
-    
-    switch (index) {
+    let dashboard1 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=2";
+    let dashboard2 = "http://localhost:3000/d-solo/SoFiK5XZz/kondensator-and-verdampfer-2w?orgId=1&from=1579970090373&to=1582171278843&panelId=3";
 
-        case 1: 
-        document.querySelector('.grafana-frame').src = quelle1; 
-        document.querySelector('.dropbtn').innerHTML = "Dashboard 1";
+    switch (dashboard) {
+
+        case 1:
+        document.querySelector('.grafana-frame').src = dashboard1;
+        document.querySelector('.').innerHTML = "Dashboard 1";
         break;
 
-        case 2: 
-        document.querySelector('.grafana-frame').src = quelle2; 
-        document.querySelector('.dropbtn').innerHTML = "Dashboard 2";
+        case 2:
+        document.querySelector('.grafana-frame').src = dashboard2;
+        document.querySelector('.').innerHTML = "Dashboard 2";
         break;
 
     }
 
+}
+
+async function getDropdown () {
+
+    let obj;
+
+    //fetch('../../config.json')
+    //    .then(res => res.json())
+    //    .then(data => obj = data)
+    //    .then(() => document.querySelector('.dropdown-content').innerHTML = '<a href=\"#\" onclick=\"dropdown(\'' + obj['dashboard1'] + '\')\">Dashboard 1</a>')
+        
 }
 

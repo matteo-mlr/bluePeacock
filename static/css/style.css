@@ -213,11 +213,6 @@ label {
     transform: scale(1.1);
 }
 
-.date-element:last-child {
-    color: #fff;
-    background-color: rgb(85, 85, 85);
-}
-
 .date-element:after {
     content: '';
     background-color: #fff;
