@@ -203,6 +203,13 @@ label {
     -webkit-transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
     transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
     display: inline-block;
+<<<<<<< HEAD
+=======
+}
+
+.date-element.disable {
+    display: none;
+>>>>>>> 7b0353c075a574ac74eb096486a249eb6c7562b9
 }
 
 .date-element.disable {
