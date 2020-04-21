@@ -29,11 +29,6 @@ if (isSafari) {
     
 }
 
-<<<<<<< HEAD
-getDropdown();
-
-=======
->>>>>>> 7b0353c075a574ac74eb096486a249eb6c7562b9
 /* Variablen für Buttons */
 
 let btnAktualisieren = document.getElementById('aktualisieren');
